@@ -3,7 +3,7 @@
 set -eu -o pipefail
 
 NAME="turrisbuild"
-IMAGE="docker.io/library/ubuntu:20.04"
+IMAGE="docker.io/library/ubuntu:24.04"
 
 podman pull ${IMAGE}
 

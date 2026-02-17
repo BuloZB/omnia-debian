@@ -48,7 +48,7 @@ chown root:root $ROOTDIR/etc/fw_env.config
 
 cat >$ROOTDIR/etc/apt/sources.list <<EOF
 deb $MIRROR $DEBVER main non-free non-free-firmware
-deb http://security.debian.org/ $DEBVER-security/updates main non-free non-free-firmware
+deb http://security.debian.org/debian-security $DEBVER-security main non-free non-free-firmware
 EOF
 
 cat >$ROOTDIR/etc/rc.local <<EOF
@@ -102,7 +102,7 @@ ENDSCRIPT
 # create package
 cd $ROOTDIR
 $SUDO rm -f ../omnia-medkit.tar.gz
-$SUDO tar zcf ../omnia-medkit.tar.gz *
+$SUDO tar --xattrs -zcf ../omnia-medkit.tar.gz *
 $SUDO mv ../omnia-medkit.tar.gz ${BUILDROOT}
 cd $BUILDROOT
 d=`date "+%Y%m%d"`

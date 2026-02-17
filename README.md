@@ -109,7 +109,7 @@ With fdisk create partition table or delete all existing partitions and create o
 # wget https://krtek.taaa.eu/~th/mox-images/mox-sdimg-20200130.tar.gz
 # mount /dev/mmcblk0p1 /mnt
 # cd /mnt
-# tar xf /tmp/mox-sdimg-20200130.tar.gz
+# tar --xattrs --xattrs-include='*' -xf /tmp/mox-sdimg-20200130.tar.gz
 # cd /tmp
 # rm /tmp/mox-sdimg-20200130.tar.gz
 # umount /mnt
@@ -130,6 +130,10 @@ ip link set up dev eth0
 ip addr add 192.168.0.20/24 dev eth0
 ssh root@192.168.0.1
 ```
+
+## File capabilities and extended attributes (xattrs)
+
+The tar archives contain Linux file capabilities (xattrs) needed by commands like `ping` and `dmesg`. When extracting manually, always use `tar --xattrs --xattrs-include='*' -xf <archive>.tar.gz` to preserve them. The automatic Omnia USB reflash procedure may not preserve xattrs — if affected, run `apt-get --reinstall install iputils-ping` (or other affected packages) on the board to restore capabilities.
 
 ## Vagrant VM preparation
 

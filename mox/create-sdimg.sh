@@ -52,7 +52,7 @@ chown root:root $ROOTDIR/etc/network/interfaces
 
 cat >$ROOTDIR/etc/apt/sources.list <<EOF
 deb $MIRROR $DEBVER main non-free non-free-firmware
-deb http://security.debian.org/ $DEBVER-security/updates main non-free non-free-firmware
+deb http://security.debian.org/debian-security $DEBVER-security main non-free non-free-firmware
 EOF
 
 
@@ -111,7 +111,7 @@ ENDSCRIPT
 # create package
 cd $ROOTDIR
 $SUDO rm -f ../mox-sdimg.tar.gz
-$SUDO tar zcf ../mox-sdimg.tar.gz *
+$SUDO tar --xattrs -zcf ../mox-sdimg.tar.gz *
 $SUDO mv ../mox-sdimg.tar.gz ${BUILDROOT}
 cd $BUILDROOT
 d=`date "+%Y%m%d"`
